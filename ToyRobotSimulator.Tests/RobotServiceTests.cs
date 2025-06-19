@@ -70,5 +70,21 @@ namespace ToyRobotSimulator.Tests
             var report = _robotService.Report();
             Assert.Equal("3,3,NORTH", report);
         }
+
+        [Fact]
+        public void Test_InvalidPlacePosition()
+        {
+            _robotService.Place(-1, -1, Direction.NORTH);
+            var report = _robotService.Report();
+            Assert.Equal("Not placed on the table", report);
+        }
+
+        [Fact]
+        public void Test_MoveWithoutPlace()
+        {
+            _robotService.Move();
+            var report = _robotService.Report();
+            Assert.Equal("Not placed on the table", report);
+        }
     }
 }
